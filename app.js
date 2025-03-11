@@ -26,7 +26,7 @@ function adicionarAmigo(){
 }
 function atualizarLista() {
     console.log(amigos)
-    const listaAmigos = document.getElementById('listaAmigos');
+    const listaAmigos = pegarElementoApartirDoID('listaAmigos')
     listaAmigos.innerHTML = '';
 
     for (let i = 0; i < amigos.length; i++) {
@@ -35,4 +35,24 @@ function atualizarLista() {
         listaAmigos.appendChild(novoAmigo);
     }
     
+}
+//SORTEIO DE NÚMERO ALEATÓRIO
+function geradorDeNumeroAleatorio(min, max) {
+    return Math.floor(Math.random() * (max - min));
+  }
+  
+
+//SORTEAR AMIGOS
+function sortearAmigo() {
+    const resultado = pegarElementoApartirDoID('resultado');
+    let numeroSorteado = geradorDeNumeroAleatorio(0, amigos.length )
+    console.log(numeroSorteado)
+    if (amigos.length !== 0) {
+        console.log(amigos[numeroSorteado]);
+        resultado.innerHTML = amigos[numeroSorteado]; 
+        amigos.splice(numeroSorteado,1);
+        atualizarLista();
+    }else {
+        resultado.textContent = "Lista vazia para sorteio de nome"
+    }
 }
